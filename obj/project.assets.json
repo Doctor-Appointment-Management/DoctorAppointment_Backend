@@ -4583,23 +4583,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\munir\\.nuget\\packages\\": {},
+    "C:\\Users\\sumat\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\munir\\source\\repos\\DoctorAppointmentAPI\\DoctorAppointmentAPI.csproj",
+      "projectUniqueName": "C:\\DoctorAppointment_Backend\\DoctorAppointmentAPI.csproj",
       "projectName": "DoctorAppointmentAPI",
-      "projectPath": "C:\\Users\\munir\\source\\repos\\DoctorAppointmentAPI\\DoctorAppointmentAPI.csproj",
-      "packagesPath": "C:\\Users\\munir\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\munir\\source\\repos\\DoctorAppointmentAPI\\obj\\",
+      "projectPath": "C:\\DoctorAppointment_Backend\\DoctorAppointmentAPI.csproj",
+      "packagesPath": "C:\\Users\\sumat\\.nuget\\packages\\",
+      "outputPath": "C:\\DoctorAppointment_Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\munir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sumat\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4626,7 +4626,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -4708,7 +4708,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
