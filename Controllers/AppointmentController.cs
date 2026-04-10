@@ -80,12 +80,13 @@ namespace DoctorAppointmentAPI.Controllers
         [HttpGet("available-doctors")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAvailableDoctors(
-            [FromQuery] int specializationId,
-            [FromQuery] string mode,
-            [FromQuery] DateTime date)
+    [FromQuery] int? specializationId,
+    [FromQuery] string? mode,
+    [FromQuery] DateTime? date)
         {
             var result = await _appointmentService
                 .GetAvailableDoctorsAsync(specializationId, mode, date);
+
             return Ok(result);
         }
     }

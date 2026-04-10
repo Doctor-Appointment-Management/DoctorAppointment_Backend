@@ -124,25 +124,53 @@ namespace DoctorAppointmentAPI.Services
         }
 
         public async Task<List<DoctorAvailabilityDto>> GetAvailableDoctorsAsync(
-            int specializationId, string mode, DateTime date)
+    int? specializationId, string? mode, DateTime? date)
         {
-            var doctors = await _db.Doctors
-                .Where(d => d.SpecializationId == specializationId &&
-                            d.Mode == mode && d.IsAvailable)
+            var query = _db.Doctors
+                    .Include(d => d.Specialization)   // ✅ ADD THIS
                 .Include(d => d.Appointments)
-                .ToListAsync();
+                .Where(d => d.IsAvailable)
+                .AsQueryable();
+
+            // ✅ Filter by specialization
+            if (specializationId.HasValue && specializationId.Value > 0)
+                query = query.Where(d => d.SpecializationId == specializationId.Value);
+
+            // ✅ FIX: MODE LOGIC (HANDLE BOTH)
+            if (!string.IsNullOrEmpty(mode))
+            {
+                query = query.Where(d =>
+                    d.Mode == mode || d.Mode == "Both"
+                );
+            }
+
+            var doctors = await query.ToListAsync();
 
             return doctors.Select(d => new DoctorAvailabilityDto
             {
                 DoctorId = d.Id,
                 DoctorName = d.Name,
+
+                // ✅ ADD THIS LINE
+                Specialization = d.Specialization.Name,
+
                 Mode = d.Mode,
                 Degree = d.Degree ?? "",
                 Experience = d.Experience,
-                BookedSlots = d.Appointments
-                    .Where(a => a.AppointmentDate.Date == date.Date &&
-                                (a.Status == "Pending" || a.Status == "Confirmed"))
-                    .Select(a => a.AppointmentTime).ToList()
+
+                BookedSlots = date.HasValue
+        ? d.Appointments
+            .Where(a => a.AppointmentDate.Date == date.Value.Date &&
+                        (a.Status == "Pending" || a.Status == "Confirmed"))
+            .Select(a => a.AppointmentTime)
+            .ToList()
+        : new List<string>(),
+
+                AvailableSlots = date.HasValue
+        ? 13 - d.Appointments.Count(a =>
+            a.AppointmentDate.Date == date.Value.Date &&
+            (a.Status == "Pending" || a.Status == "Confirmed"))
+        : 13
             }).ToList();
         }
 
