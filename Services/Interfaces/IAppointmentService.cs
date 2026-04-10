@@ -12,7 +12,7 @@ namespace DoctorAppointmentAPI.Services.Interfaces
         Task<List<AppointmentResponseDto>> GetAllAppointmentsAsync();
         Task<(bool, string)> UpdateStatusAsync(int appointmentId, string status, int actorUserId);
         Task<List<DoctorAvailabilityDto>> GetAvailableDoctorsAsync(
-            int specializationId, string mode, DateTime date);
+    int? specializationId, string? mode, DateTime? date);
 
     }
 
