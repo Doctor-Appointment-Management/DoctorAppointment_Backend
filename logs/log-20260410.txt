@@ -4426,3 +4426,863 @@ ORDER BY `d`.`Id`, `s`.`Id`
 2026-04-10 10:14:38.178 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
 2026-04-10 10:14:38.181 +05:30 [INF] ["2026-04-10T04:44:38.1815998Z"] Response: 200
 2026-04-10 10:14:38.184 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?specializationId=40&mode=Offline - 200 null application/json; charset=utf-8 121.1386ms
+2026-04-10 13:16:43.525 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-04-10 13:16:43.686 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT GET_LOCK('__DoctorAppointmentDB_EFMigrationsLock', 259200)
+2026-04-10 13:16:44.033 +05:30 [INF] Executed DbCommand (103ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4;
+2026-04-10 13:16:44.105 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='DoctorAppointmentDB' AND TABLE_NAME='__EFMigrationsHistory';
+2026-04-10 13:16:44.140 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2026-04-10 13:16:44.164 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-10 13:16:44.169 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT RELEASE_LOCK('__DoctorAppointmentDB_EFMigrationsLock')
+2026-04-10 13:16:44.240 +05:30 [INF] User profile is available. Using 'C:\Users\sumat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-10 13:16:44.384 +05:30 [INF] Reminder service started.
+2026-04-10 13:16:45.050 +05:30 [INF] Executed DbCommand (71ms) [Parameters=[@__today_0='?' (DbType = DateTime), @__AddDays_1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`EmailVerifyToken`, `u`.`IsActive`, `u`.`IsEmailVerified`, `u`.`LastLogin`, `u`.`Password`, `u`.`Role`, `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Users` AS `u` ON `p`.`UserId` = `u`.`Id`
+INNER JOIN `Doctors` AS `d` ON `a`.`DoctorId` = `d`.`Id`
+WHERE ((`a`.`Status` = 'Confirmed') AND (`a`.`AppointmentDate` >= @__today_0)) AND (`a`.`AppointmentDate` <= @__AddDays_1)
+2026-04-10 13:16:45.145 +05:30 [INF] Reminder check done. Processed 0 appointments.
+2026-04-10 13:16:45.343 +05:30 [INF] Now listening on: http://localhost:5199
+2026-04-10 13:16:45.426 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-10 13:16:45.453 +05:30 [INF] Hosting environment: Development
+2026-04-10 13:16:45.459 +05:30 [INF] Content root path: C:\DoctorAppointment_Backend
+2026-04-10 13:16:48.122 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-10 13:16:48.122 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/_vs/browserLink - null null
+2026-04-10 13:16:48.169 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/_framework/aspnetcore-browser-refresh.js - 200 16525 application/javascript; charset=utf-8 54.5071ms
+2026-04-10 13:16:48.430 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/_vs/browserLink - 200 null text/javascript; charset=UTF-8 327.0364ms
+2026-04-10 13:16:48.493 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/swagger/v1/swagger.json - null null
+2026-04-10 13:16:48.563 +05:30 [INF] ["2026-04-10T07:46:48.5599406Z"] GET /swagger/v1/swagger.json from ::1
+2026-04-10 13:16:48.612 +05:30 [INF] ["2026-04-10T07:46:48.6128842Z"] Response: 200
+2026-04-10 13:16:48.619 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 125.5574ms
+2026-04-10 14:09:58.409 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-04-10 14:09:58.611 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT GET_LOCK('__DoctorAppointmentDB_EFMigrationsLock', 259200)
+2026-04-10 14:09:58.921 +05:30 [INF] Executed DbCommand (97ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4;
+2026-04-10 14:09:59.053 +05:30 [INF] Executed DbCommand (73ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='DoctorAppointmentDB' AND TABLE_NAME='__EFMigrationsHistory';
+2026-04-10 14:09:59.069 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2026-04-10 14:09:59.092 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-10 14:09:59.098 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT RELEASE_LOCK('__DoctorAppointmentDB_EFMigrationsLock')
+2026-04-10 14:09:59.184 +05:30 [INF] User profile is available. Using 'C:\Users\sumat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-10 14:09:59.294 +05:30 [INF] Reminder service started.
+2026-04-10 14:10:00.382 +05:30 [INF] Executed DbCommand (95ms) [Parameters=[@__today_0='?' (DbType = DateTime), @__AddDays_1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`EmailVerifyToken`, `u`.`IsActive`, `u`.`IsEmailVerified`, `u`.`LastLogin`, `u`.`Password`, `u`.`Role`, `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Users` AS `u` ON `p`.`UserId` = `u`.`Id`
+INNER JOIN `Doctors` AS `d` ON `a`.`DoctorId` = `d`.`Id`
+WHERE ((`a`.`Status` = 'Confirmed') AND (`a`.`AppointmentDate` >= @__today_0)) AND (`a`.`AppointmentDate` <= @__AddDays_1)
+2026-04-10 14:10:00.449 +05:30 [INF] Reminder check done. Processed 0 appointments.
+2026-04-10 14:10:00.710 +05:30 [INF] Now listening on: http://localhost:5199
+2026-04-10 14:10:01.438 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-10 14:10:01.445 +05:30 [INF] Hosting environment: Development
+2026-04-10 14:10:01.449 +05:30 [INF] Content root path: C:\DoctorAppointment_Backend
+2026-04-10 14:10:02.399 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/_vs/browserLink - null null
+2026-04-10 14:10:02.399 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-10 14:10:02.748 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/_framework/aspnetcore-browser-refresh.js - 200 16525 application/javascript; charset=utf-8 373.286ms
+2026-04-10 14:10:02.848 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/_vs/browserLink - 200 null text/javascript; charset=UTF-8 476.5025ms
+2026-04-10 14:10:02.947 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/swagger/v1/swagger.json - null null
+2026-04-10 14:10:03.106 +05:30 [INF] ["2026-04-10T08:40:03.0999213Z"] GET /swagger/v1/swagger.json from ::1
+2026-04-10 14:10:03.182 +05:30 [INF] ["2026-04-10T08:40:03.1820325Z"] Response: 200
+2026-04-10 14:10:03.189 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 241.9389ms
+2026-04-10 14:10:31.121 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/auth/login - null null
+2026-04-10 14:10:31.190 +05:30 [INF] ["2026-04-10T08:40:31.1898243Z"] OPTIONS /api/auth/login from ::1
+2026-04-10 14:10:31.225 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-10 14:10:31.232 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:31.243 +05:30 [INF] ["2026-04-10T08:40:31.2435323Z"] Response: 204
+2026-04-10 14:10:31.248 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/auth/login - 204 null null 126.8773ms
+2026-04-10 14:10:31.273 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5199/api/auth/login - application/json 59
+2026-04-10 14:10:31.299 +05:30 [INF] ["2026-04-10T08:40:31.2990971Z"] POST /api/auth/login from ::1
+2026-04-10 14:10:31.306 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:31.602 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '10-04-2026 05:38:14', Current time (UTC): '10-04-2026 08:40:31'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-04-10 14:10:31.644 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '10-04-2026 05:38:14', Current time (UTC): '10-04-2026 08:40:31'.
+2026-04-10 14:10:31.654 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI)'
+2026-04-10 14:10:31.706 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(DoctorAppointmentAPI.DTOs.Auth.LoginDto) on controller DoctorAppointmentAPI.Controllers.AuthController (DoctorAppointmentAPI).
+2026-04-10 14:10:31.988 +05:30 [INF] Executed DbCommand (41ms) [Parameters=[@__dto_Email_0='?' (Size = 150), @__dto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`EmailVerifyToken`, `u`.`IsActive`, `u`.`IsEmailVerified`, `u`.`LastLogin`, `u`.`Password`, `u`.`Role`
+FROM `Users` AS `u`
+WHERE (`u`.`Email` = @__dto_Email_0) AND (`u`.`Password` = @__dto_Password_1)
+LIMIT 1
+2026-04-10 14:10:32.588 +05:30 [INF] Executed DbCommand (84ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p6='?' (DbType = Int32), @p5='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Sessions` (`IsActive`, `LoginTime`, `LogoutTime`, `Token`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Sessions`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+UPDATE `Users` SET `LastLogin` = @p5
+WHERE `Id` = @p6;
+SELECT ROW_COUNT();
+2026-04-10 14:10:32.699 +05:30 [INF] Executed DbCommand (22ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`
+FROM `Patients` AS `p`
+WHERE `p`.`UserId` = @__user_Id_0
+LIMIT 1
+2026-04-10 14:10:32.756 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType10`5[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-10 14:10:32.778 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI) in 1058.5961ms
+2026-04-10 14:10:32.784 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI)'
+2026-04-10 14:10:32.791 +05:30 [INF] ["2026-04-10T08:40:32.7910890Z"] Response: 200
+2026-04-10 14:10:32.805 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5199/api/auth/login - 200 null application/json; charset=utf-8 1532.0696ms
+2026-04-10 14:10:34.388 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/my/8 - null null
+2026-04-10 14:10:34.402 +05:30 [INF] ["2026-04-10T08:40:34.4027864Z"] OPTIONS /api/appointment/my/8 from ::1
+2026-04-10 14:10:34.413 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:34.417 +05:30 [INF] ["2026-04-10T08:40:34.4174056Z"] Response: 204
+2026-04-10 14:10:34.423 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/my/8 - 204 null null 35.3679ms
+2026-04-10 14:10:34.433 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/my/8 - null null
+2026-04-10 14:10:34.443 +05:30 [INF] ["2026-04-10T08:40:34.4433450Z"] GET /api/appointment/my/8 from ::1
+2026-04-10 14:10:34.449 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:34.490 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:10:34.502 +05:30 [INF] Route matched with {action = "MyAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyAppointments(Int32) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:10:34.671 +05:30 [INF] Executed DbCommand (71ms) [Parameters=[@__patientId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Doctors` AS `d` ON `a`.`DoctorId` = `d`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE `a`.`PatientId` = @__patientId_0
+2026-04-10 14:10:34.786 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:10:34.808 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI) in 300.204ms
+2026-04-10 14:10:34.814 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:10:34.817 +05:30 [INF] ["2026-04-10T08:40:34.8175031Z"] Response: 200
+2026-04-10 14:10:34.821 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/my/8 - 200 null application/json; charset=utf-8 388.3192ms
+2026-04-10 14:10:41.267 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/admin/doctors - null null
+2026-04-10 14:10:41.268 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/specialization - null null
+2026-04-10 14:10:41.277 +05:30 [INF] ["2026-04-10T08:40:41.2775727Z"] OPTIONS /api/admin/doctors from ::1
+2026-04-10 14:10:41.284 +05:30 [INF] ["2026-04-10T08:40:41.2845032Z"] OPTIONS /api/specialization from ::1
+2026-04-10 14:10:41.289 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:41.294 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:41.296 +05:30 [INF] ["2026-04-10T08:40:41.2968919Z"] Response: 204
+2026-04-10 14:10:41.299 +05:30 [INF] ["2026-04-10T08:40:41.2991868Z"] Response: 204
+2026-04-10 14:10:41.302 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/admin/doctors - 204 null null 35.3775ms
+2026-04-10 14:10:41.306 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/specialization - 204 null null 38.2498ms
+2026-04-10 14:10:41.317 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/admin/doctors - null null
+2026-04-10 14:10:41.331 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/specialization - null null
+2026-04-10 14:10:41.344 +05:30 [INF] ["2026-04-10T08:40:41.3442430Z"] GET /api/admin/doctors from ::1
+2026-04-10 14:10:41.352 +05:30 [INF] ["2026-04-10T08:40:41.3524677Z"] GET /api/specialization from ::1
+2026-04-10 14:10:41.357 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:41.362 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:41.369 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.SpecializationController.GetAll (DoctorAppointmentAPI)'
+2026-04-10 14:10:41.371 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2026-04-10 14:10:41.378 +05:30 [INF] Route matched with {action = "GetAll", controller = "Specialization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller DoctorAppointmentAPI.Controllers.SpecializationController (DoctorAppointmentAPI).
+2026-04-10 14:10:41.380 +05:30 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-04-10 14:10:41.388 +05:30 [INF] ["2026-04-10T08:40:41.3879896Z"] Response: 403
+2026-04-10 14:10:41.391 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/admin/doctors - 403 0 null 73.851ms
+2026-04-10 14:10:41.478 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Id`, `s`.`Name`, `s`.`Category`, (
+    SELECT COUNT(*)
+    FROM `Doctors` AS `d`
+    WHERE (`s`.`Id` = `d`.`SpecializationId`) AND `d`.`IsAvailable`) AS `DoctorCount`
+FROM `Specializations` AS `s`
+ORDER BY `s`.`Category`, `s`.`Name`
+2026-04-10 14:10:41.485 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType15`4[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:10:41.494 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.SpecializationController.GetAll (DoctorAppointmentAPI) in 110.0391ms
+2026-04-10 14:10:41.498 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.SpecializationController.GetAll (DoctorAppointmentAPI)'
+2026-04-10 14:10:41.501 +05:30 [INF] ["2026-04-10T08:40:41.5014139Z"] Response: 200
+2026-04-10 14:10:41.504 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/specialization - 200 null application/json; charset=utf-8 174.9192ms
+2026-04-10 14:10:43.738 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors - null null
+2026-04-10 14:10:43.748 +05:30 [INF] ["2026-04-10T08:40:43.7481056Z"] OPTIONS /api/appointment/available-doctors from ::1
+2026-04-10 14:10:43.754 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:43.757 +05:30 [INF] ["2026-04-10T08:40:43.7578350Z"] Response: 204
+2026-04-10 14:10:43.762 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors - 204 null null 23.7899ms
+2026-04-10 14:10:43.772 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors - null null
+2026-04-10 14:10:43.779 +05:30 [INF] ["2026-04-10T08:40:43.7796204Z"] GET /api/appointment/available-doctors from ::1
+2026-04-10 14:10:43.785 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:43.792 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:10:43.802 +05:30 [INF] Route matched with {action = "GetAvailableDoctors", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAvailableDoctors(System.Nullable`1[System.Int32], System.String, System.Nullable`1[System.DateTime]) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:10:43.919 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`, `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+LEFT JOIN `Appointments` AS `a` ON `d`.`Id` = `a`.`DoctorId`
+WHERE `d`.`IsAvailable`
+ORDER BY `d`.`Id`, `s`.`Id`
+2026-04-10 14:10:43.945 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Doctor.DoctorAvailabilityDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:10:43.955 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI) in 146.6406ms
+2026-04-10 14:10:43.960 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:10:43.963 +05:30 [INF] ["2026-04-10T08:40:43.9636728Z"] Response: 200
+2026-04-10 14:10:43.967 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors - 200 null application/json; charset=utf-8 195.2107ms
+2026-04-10 14:10:51.131 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors?mode=Offline - null null
+2026-04-10 14:10:51.166 +05:30 [INF] ["2026-04-10T08:40:51.1665144Z"] OPTIONS /api/appointment/available-doctors from ::1
+2026-04-10 14:10:51.172 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:51.174 +05:30 [INF] ["2026-04-10T08:40:51.1742108Z"] Response: 204
+2026-04-10 14:10:51.177 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors?mode=Offline - 204 null null 46.6656ms
+2026-04-10 14:10:51.191 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?mode=Offline - null null
+2026-04-10 14:10:51.199 +05:30 [INF] ["2026-04-10T08:40:51.1996797Z"] GET /api/appointment/available-doctors from ::1
+2026-04-10 14:10:51.204 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:51.208 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:10:51.214 +05:30 [INF] Route matched with {action = "GetAvailableDoctors", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAvailableDoctors(System.Nullable`1[System.Int32], System.String, System.Nullable`1[System.DateTime]) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:10:51.298 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__mode_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`, `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+LEFT JOIN `Appointments` AS `a` ON `d`.`Id` = `a`.`DoctorId`
+WHERE `d`.`IsAvailable` AND ((`d`.`Mode` = @__mode_0) OR (`d`.`Mode` = 'Both'))
+ORDER BY `d`.`Id`, `s`.`Id`
+2026-04-10 14:10:51.313 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Doctor.DoctorAvailabilityDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:10:51.317 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI) in 96.6102ms
+2026-04-10 14:10:51.322 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:10:51.325 +05:30 [INF] ["2026-04-10T08:40:51.3255135Z"] Response: 200
+2026-04-10 14:10:51.329 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?mode=Offline - 200 null application/json; charset=utf-8 137.9874ms
+2026-04-10 14:10:53.987 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?mode=Offline - null null
+2026-04-10 14:10:54.000 +05:30 [INF] ["2026-04-10T08:40:54.0000260Z"] GET /api/appointment/available-doctors from ::1
+2026-04-10 14:10:54.005 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:54.011 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:10:54.014 +05:30 [INF] Route matched with {action = "GetAvailableDoctors", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAvailableDoctors(System.Nullable`1[System.Int32], System.String, System.Nullable`1[System.DateTime]) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:10:54.052 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__mode_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`, `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+LEFT JOIN `Appointments` AS `a` ON `d`.`Id` = `a`.`DoctorId`
+WHERE `d`.`IsAvailable` AND ((`d`.`Mode` = @__mode_0) OR (`d`.`Mode` = 'Both'))
+ORDER BY `d`.`Id`, `s`.`Id`
+2026-04-10 14:10:54.062 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Doctor.DoctorAvailabilityDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:10:54.065 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI) in 44.54ms
+2026-04-10 14:10:54.069 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:10:54.073 +05:30 [INF] ["2026-04-10T08:40:54.0730060Z"] Response: 200
+2026-04-10 14:10:54.077 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?mode=Offline - 200 null application/json; charset=utf-8 89.808ms
+2026-04-10 14:10:58.422 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors?mode=Online - null null
+2026-04-10 14:10:58.438 +05:30 [INF] ["2026-04-10T08:40:58.4385895Z"] OPTIONS /api/appointment/available-doctors from ::1
+2026-04-10 14:10:58.445 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:58.448 +05:30 [INF] ["2026-04-10T08:40:58.4480134Z"] Response: 204
+2026-04-10 14:10:58.452 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors?mode=Online - 204 null null 30.7374ms
+2026-04-10 14:10:58.461 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?mode=Online - null null
+2026-04-10 14:10:58.468 +05:30 [INF] ["2026-04-10T08:40:58.4685652Z"] GET /api/appointment/available-doctors from ::1
+2026-04-10 14:10:58.472 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:10:58.475 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:10:58.478 +05:30 [INF] Route matched with {action = "GetAvailableDoctors", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAvailableDoctors(System.Nullable`1[System.Int32], System.String, System.Nullable`1[System.DateTime]) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:10:58.506 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__mode_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`, `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+LEFT JOIN `Appointments` AS `a` ON `d`.`Id` = `a`.`DoctorId`
+WHERE `d`.`IsAvailable` AND ((`d`.`Mode` = @__mode_0) OR (`d`.`Mode` = 'Both'))
+ORDER BY `d`.`Id`, `s`.`Id`
+2026-04-10 14:10:58.515 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Doctor.DoctorAvailabilityDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:10:58.519 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI) in 35.4694ms
+2026-04-10 14:10:58.522 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:10:58.526 +05:30 [INF] ["2026-04-10T08:40:58.5262490Z"] Response: 200
+2026-04-10 14:10:58.530 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?mode=Online - 200 null application/json; charset=utf-8 68.9513ms
+2026-04-10 14:11:01.301 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors - null null
+2026-04-10 14:11:01.310 +05:30 [INF] ["2026-04-10T08:41:01.3101641Z"] OPTIONS /api/appointment/available-doctors from ::1
+2026-04-10 14:11:01.315 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:01.318 +05:30 [INF] ["2026-04-10T08:41:01.3182801Z"] Response: 204
+2026-04-10 14:11:01.322 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors - 204 null null 21.0044ms
+2026-04-10 14:11:01.331 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors - null null
+2026-04-10 14:11:01.339 +05:30 [INF] ["2026-04-10T08:41:01.3389699Z"] GET /api/appointment/available-doctors from ::1
+2026-04-10 14:11:01.344 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:01.346 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:11:01.350 +05:30 [INF] Route matched with {action = "GetAvailableDoctors", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAvailableDoctors(System.Nullable`1[System.Int32], System.String, System.Nullable`1[System.DateTime]) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:01.380 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`, `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+LEFT JOIN `Appointments` AS `a` ON `d`.`Id` = `a`.`DoctorId`
+WHERE `d`.`IsAvailable`
+ORDER BY `d`.`Id`, `s`.`Id`
+2026-04-10 14:11:01.389 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Doctor.DoctorAvailabilityDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:11:01.394 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI) in 38.7847ms
+2026-04-10 14:11:01.398 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:11:01.401 +05:30 [INF] ["2026-04-10T08:41:01.4017614Z"] Response: 200
+2026-04-10 14:11:01.405 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors - 200 null application/json; charset=utf-8 74.0353ms
+2026-04-10 14:11:09.735 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors?date=2026-04-12 - null null
+2026-04-10 14:11:09.753 +05:30 [INF] ["2026-04-10T08:41:09.7534997Z"] OPTIONS /api/appointment/available-doctors from ::1
+2026-04-10 14:11:09.767 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:09.771 +05:30 [INF] ["2026-04-10T08:41:09.7710912Z"] Response: 204
+2026-04-10 14:11:09.774 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors?date=2026-04-12 - 204 null null 39.6927ms
+2026-04-10 14:11:09.787 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?date=2026-04-12 - null null
+2026-04-10 14:11:09.795 +05:30 [INF] ["2026-04-10T08:41:09.7952429Z"] GET /api/appointment/available-doctors from ::1
+2026-04-10 14:11:09.801 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:09.805 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:11:09.809 +05:30 [INF] Route matched with {action = "GetAvailableDoctors", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAvailableDoctors(System.Nullable`1[System.Int32], System.String, System.Nullable`1[System.DateTime]) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:09.841 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`, `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+LEFT JOIN `Appointments` AS `a` ON `d`.`Id` = `a`.`DoctorId`
+WHERE `d`.`IsAvailable`
+ORDER BY `d`.`Id`, `s`.`Id`
+2026-04-10 14:11:09.853 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Doctor.DoctorAvailabilityDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:11:09.856 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI) in 40.4537ms
+2026-04-10 14:11:09.861 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:11:09.863 +05:30 [INF] ["2026-04-10T08:41:09.8639303Z"] Response: 200
+2026-04-10 14:11:09.867 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?date=2026-04-12 - 200 null application/json; charset=utf-8 80.3043ms
+2026-04-10 14:11:19.694 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors?specializationId=40&date=2026-04-12 - null null
+2026-04-10 14:11:19.724 +05:30 [INF] ["2026-04-10T08:41:19.7248359Z"] OPTIONS /api/appointment/available-doctors from ::1
+2026-04-10 14:11:19.731 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:19.735 +05:30 [INF] ["2026-04-10T08:41:19.7351165Z"] Response: 204
+2026-04-10 14:11:19.739 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/available-doctors?specializationId=40&date=2026-04-12 - 204 null null 44.1227ms
+2026-04-10 14:11:19.748 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?specializationId=40&date=2026-04-12 - null null
+2026-04-10 14:11:19.757 +05:30 [INF] ["2026-04-10T08:41:19.7571366Z"] GET /api/appointment/available-doctors from ::1
+2026-04-10 14:11:19.763 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:19.766 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:11:19.771 +05:30 [INF] Route matched with {action = "GetAvailableDoctors", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAvailableDoctors(System.Nullable`1[System.Int32], System.String, System.Nullable`1[System.DateTime]) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:19.835 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__specializationId_Value_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`, `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+LEFT JOIN `Appointments` AS `a` ON `d`.`Id` = `a`.`DoctorId`
+WHERE `d`.`IsAvailable` AND (`d`.`SpecializationId` = @__specializationId_Value_0)
+ORDER BY `d`.`Id`, `s`.`Id`
+2026-04-10 14:11:19.845 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Doctor.DoctorAvailabilityDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:11:19.850 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI) in 74.3528ms
+2026-04-10 14:11:19.853 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.GetAvailableDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:11:19.857 +05:30 [INF] ["2026-04-10T08:41:19.8573574Z"] Response: 200
+2026-04-10 14:11:19.861 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/available-doctors?specializationId=40&date=2026-04-12 - 200 null application/json; charset=utf-8 112.8518ms
+2026-04-10 14:11:22.392 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/my/8 - null null
+2026-04-10 14:11:22.399 +05:30 [INF] ["2026-04-10T08:41:22.3999132Z"] OPTIONS /api/appointment/my/8 from ::1
+2026-04-10 14:11:22.405 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:22.407 +05:30 [INF] ["2026-04-10T08:41:22.4076496Z"] Response: 204
+2026-04-10 14:11:22.411 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/my/8 - 204 null null 18.1802ms
+2026-04-10 14:11:22.421 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/my/8 - null null
+2026-04-10 14:11:22.429 +05:30 [INF] ["2026-04-10T08:41:22.4298965Z"] GET /api/appointment/my/8 from ::1
+2026-04-10 14:11:22.434 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:22.438 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:22.442 +05:30 [INF] Route matched with {action = "MyAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyAppointments(Int32) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:22.477 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__patientId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Doctors` AS `d` ON `a`.`DoctorId` = `d`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE `a`.`PatientId` = @__patientId_0
+2026-04-10 14:11:22.484 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:11:22.488 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI) in 39.5178ms
+2026-04-10 14:11:22.492 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:22.496 +05:30 [INF] ["2026-04-10T08:41:22.4959810Z"] Response: 200
+2026-04-10 14:11:22.499 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/my/8 - 200 null application/json; charset=utf-8 77.8946ms
+2026-04-10 14:11:26.994 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/auth/login - null null
+2026-04-10 14:11:27.009 +05:30 [INF] ["2026-04-10T08:41:27.0098496Z"] OPTIONS /api/auth/login from ::1
+2026-04-10 14:11:27.022 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:27.024 +05:30 [INF] ["2026-04-10T08:41:27.0245971Z"] Response: 204
+2026-04-10 14:11:27.029 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/auth/login - 204 null null 34.6864ms
+2026-04-10 14:11:27.038 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5199/api/auth/login - application/json 51
+2026-04-10 14:11:27.046 +05:30 [INF] ["2026-04-10T08:41:27.0460241Z"] POST /api/auth/login from ::1
+2026-04-10 14:11:27.050 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:27.053 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI)'
+2026-04-10 14:11:27.056 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(DoctorAppointmentAPI.DTOs.Auth.LoginDto) on controller DoctorAppointmentAPI.Controllers.AuthController (DoctorAppointmentAPI).
+2026-04-10 14:11:27.084 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?' (Size = 150), @__dto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`EmailVerifyToken`, `u`.`IsActive`, `u`.`IsEmailVerified`, `u`.`LastLogin`, `u`.`Password`, `u`.`Role`
+FROM `Users` AS `u`
+WHERE (`u`.`Email` = @__dto_Email_0) AND (`u`.`Password` = @__dto_Password_1)
+LIMIT 1
+2026-04-10 14:11:27.100 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p6='?' (DbType = Int32), @p5='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Sessions` (`IsActive`, `LoginTime`, `LogoutTime`, `Token`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Sessions`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+UPDATE `Users` SET `LastLogin` = @p5
+WHERE `Id` = @p6;
+SELECT ROW_COUNT();
+2026-04-10 14:11:27.126 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`
+FROM `Doctors` AS `d`
+WHERE `d`.`UserId` = @__user_Id_0
+LIMIT 1
+2026-04-10 14:11:27.138 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType10`5[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-10 14:11:27.142 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI) in 81.339ms
+2026-04-10 14:11:27.147 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI)'
+2026-04-10 14:11:27.150 +05:30 [INF] ["2026-04-10T08:41:27.1506138Z"] Response: 200
+2026-04-10 14:11:27.154 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5199/api/auth/login - 200 null application/json; charset=utf-8 116.1571ms
+2026-04-10 14:11:28.704 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/doctor/10 - null null
+2026-04-10 14:11:28.714 +05:30 [INF] ["2026-04-10T08:41:28.7142365Z"] OPTIONS /api/appointment/doctor/10 from ::1
+2026-04-10 14:11:28.720 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:28.723 +05:30 [INF] ["2026-04-10T08:41:28.7232753Z"] Response: 204
+2026-04-10 14:11:28.727 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/doctor/10 - 204 null null 22.6815ms
+2026-04-10 14:11:28.738 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - null null
+2026-04-10 14:11:28.748 +05:30 [INF] ["2026-04-10T08:41:28.7480346Z"] GET /api/appointment/doctor/10 from ::1
+2026-04-10 14:11:28.752 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:28.755 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:28.764 +05:30 [INF] Route matched with {action = "DoctorAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DoctorAppointments(Int32) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:28.814 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE `a`.`DoctorId` = @__doctorId_0
+2026-04-10 14:11:28.825 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:11:28.830 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI) in 61.1662ms
+2026-04-10 14:11:28.834 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:28.838 +05:30 [INF] ["2026-04-10T08:41:28.8385375Z"] Response: 200
+2026-04-10 14:11:28.842 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - 200 null application/json; charset=utf-8 103.7115ms
+2026-04-10 14:11:32.214 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/1/status - null null
+2026-04-10 14:11:32.229 +05:30 [INF] ["2026-04-10T08:41:32.2295349Z"] OPTIONS /api/appointment/1/status from ::1
+2026-04-10 14:11:32.235 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:32.237 +05:30 [INF] ["2026-04-10T08:41:32.2379081Z"] Response: 204
+2026-04-10 14:11:32.242 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/1/status - 204 null null 27.1359ms
+2026-04-10 14:11:32.252 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5199/api/appointment/1/status - application/json 22
+2026-04-10 14:11:32.259 +05:30 [INF] ["2026-04-10T08:41:32.2596464Z"] PUT /api/appointment/1/status from ::1
+2026-04-10 14:11:32.265 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:32.268 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.UpdateStatus (DoctorAppointmentAPI)'
+2026-04-10 14:11:32.279 +05:30 [INF] Route matched with {action = "UpdateStatus", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateStatus(Int32, DoctorAppointmentAPI.DTOs.Appointment.UpdateStatusDto) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:32.364 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__appointmentId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`EmailVerifyToken`, `u`.`IsActive`, `u`.`IsEmailVerified`, `u`.`LastLogin`, `u`.`Password`, `u`.`Role`, `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Users` AS `u` ON `p`.`UserId` = `u`.`Id`
+INNER JOIN `Doctors` AS `d` ON `a`.`DoctorId` = `d`.`Id`
+WHERE `a`.`Id` = @__appointmentId_0
+LIMIT 1
+2026-04-10 14:11:32.429 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+UPDATE `Appointments` SET `Status` = @p0, `UpdatedAt` = @p1
+WHERE `Id` = @p2;
+SELECT ROW_COUNT();
+2026-04-10 14:11:37.420 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/doctor/10 - null null
+2026-04-10 14:11:37.427 +05:30 [INF] ["2026-04-10T08:41:37.4277807Z"] OPTIONS /api/appointment/doctor/10 from ::1
+2026-04-10 14:11:37.434 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:37.437 +05:30 [INF] ["2026-04-10T08:41:37.4378156Z"] Response: 204
+2026-04-10 14:11:37.443 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/doctor/10 - 204 null null 21.7927ms
+2026-04-10 14:11:37.491 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - null null
+2026-04-10 14:11:37.499 +05:30 [INF] ["2026-04-10T08:41:37.4994677Z"] GET /api/appointment/doctor/10 from ::1
+2026-04-10 14:11:37.504 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:37.507 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:37.510 +05:30 [INF] Route matched with {action = "DoctorAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DoctorAppointments(Int32) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:37.536 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE `a`.`DoctorId` = @__doctorId_0
+2026-04-10 14:11:37.542 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:11:37.546 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI) in 31.0142ms
+2026-04-10 14:11:37.550 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:37.553 +05:30 [INF] ["2026-04-10T08:41:37.5533750Z"] Response: 200
+2026-04-10 14:11:37.557 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - 200 null application/json; charset=utf-8 66.0921ms
+2026-04-10 14:11:39.249 +05:30 [INF] Email sent to anuvarshinibalu18@gmail.com with subject 'Appointment Confirmed by Doctor'
+2026-04-10 14:11:39.254 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-10 14:11:39.260 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.UpdateStatus (DoctorAppointmentAPI) in 6975.2374ms
+2026-04-10 14:11:39.264 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.UpdateStatus (DoctorAppointmentAPI)'
+2026-04-10 14:11:39.268 +05:30 [INF] ["2026-04-10T08:41:39.2682578Z"] Response: 200
+2026-04-10 14:11:39.272 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5199/api/appointment/1/status - 200 null application/json; charset=utf-8 7019.5515ms
+2026-04-10 14:11:39.286 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - null null
+2026-04-10 14:11:39.295 +05:30 [INF] ["2026-04-10T08:41:39.2954962Z"] GET /api/appointment/doctor/10 from ::1
+2026-04-10 14:11:39.303 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:39.311 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:39.315 +05:30 [INF] Route matched with {action = "DoctorAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DoctorAppointments(Int32) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:39.345 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE `a`.`DoctorId` = @__doctorId_0
+2026-04-10 14:11:39.353 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:11:39.357 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI) in 35.3176ms
+2026-04-10 14:11:39.361 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:39.364 +05:30 [INF] ["2026-04-10T08:41:39.3649455Z"] Response: 200
+2026-04-10 14:11:39.370 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - 200 null application/json; charset=utf-8 83.3656ms
+2026-04-10 14:11:45.135 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/doctor/10 - null null
+2026-04-10 14:11:45.141 +05:30 [INF] ["2026-04-10T08:41:45.1419566Z"] OPTIONS /api/appointment/doctor/10 from ::1
+2026-04-10 14:11:45.147 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:45.150 +05:30 [INF] ["2026-04-10T08:41:45.1501651Z"] Response: 204
+2026-04-10 14:11:45.155 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/doctor/10 - 204 null null 20.2524ms
+2026-04-10 14:11:45.174 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - null null
+2026-04-10 14:11:45.184 +05:30 [INF] ["2026-04-10T08:41:45.1842800Z"] GET /api/appointment/doctor/10 from ::1
+2026-04-10 14:11:45.188 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:45.191 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:45.197 +05:30 [INF] Route matched with {action = "DoctorAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DoctorAppointments(Int32) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:45.224 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE `a`.`DoctorId` = @__doctorId_0
+2026-04-10 14:11:45.232 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:11:45.236 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI) in 32.9812ms
+2026-04-10 14:11:45.240 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:45.243 +05:30 [INF] ["2026-04-10T08:41:45.2435655Z"] Response: 200
+2026-04-10 14:11:45.246 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - 200 null application/json; charset=utf-8 72.363ms
+2026-04-10 14:11:51.587 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/doctor/10 - null null
+2026-04-10 14:11:51.595 +05:30 [INF] ["2026-04-10T08:41:51.5958160Z"] OPTIONS /api/appointment/doctor/10 from ::1
+2026-04-10 14:11:51.600 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:51.602 +05:30 [INF] ["2026-04-10T08:41:51.6029662Z"] Response: 204
+2026-04-10 14:11:51.606 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/doctor/10 - 204 null null 18.2309ms
+2026-04-10 14:11:51.615 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - null null
+2026-04-10 14:11:51.622 +05:30 [INF] ["2026-04-10T08:41:51.6226303Z"] GET /api/appointment/doctor/10 from ::1
+2026-04-10 14:11:51.632 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:51.634 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:51.641 +05:30 [INF] Route matched with {action = "DoctorAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DoctorAppointments(Int32) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:11:51.670 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE `a`.`DoctorId` = @__doctorId_0
+2026-04-10 14:11:51.678 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:11:51.683 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI) in 36.2959ms
+2026-04-10 14:11:51.689 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.DoctorAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:11:51.691 +05:30 [INF] ["2026-04-10T08:41:51.6919014Z"] Response: 200
+2026-04-10 14:11:51.695 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/doctor/10 - 200 null application/json; charset=utf-8 80.3038ms
+2026-04-10 14:11:58.821 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/auth/login - null null
+2026-04-10 14:11:58.844 +05:30 [INF] ["2026-04-10T08:41:58.8445635Z"] OPTIONS /api/auth/login from ::1
+2026-04-10 14:11:58.852 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:58.855 +05:30 [INF] ["2026-04-10T08:41:58.8551209Z"] Response: 204
+2026-04-10 14:11:58.858 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/auth/login - 204 null null 37.4378ms
+2026-04-10 14:11:58.868 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5199/api/auth/login - application/json 48
+2026-04-10 14:11:58.876 +05:30 [INF] ["2026-04-10T08:41:58.8764656Z"] POST /api/auth/login from ::1
+2026-04-10 14:11:58.881 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:11:58.883 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI)'
+2026-04-10 14:11:58.886 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(DoctorAppointmentAPI.DTOs.Auth.LoginDto) on controller DoctorAppointmentAPI.Controllers.AuthController (DoctorAppointmentAPI).
+2026-04-10 14:11:58.913 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?' (Size = 150), @__dto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`EmailVerifyToken`, `u`.`IsActive`, `u`.`IsEmailVerified`, `u`.`LastLogin`, `u`.`Password`, `u`.`Role`
+FROM `Users` AS `u`
+WHERE (`u`.`Email` = @__dto_Email_0) AND (`u`.`Password` = @__dto_Password_1)
+LIMIT 1
+2026-04-10 14:11:58.925 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p6='?' (DbType = Int32), @p5='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Sessions` (`IsActive`, `LoginTime`, `LogoutTime`, `Token`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Sessions`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+UPDATE `Users` SET `LastLogin` = @p5
+WHERE `Id` = @p6;
+SELECT ROW_COUNT();
+2026-04-10 14:11:58.936 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType10`5[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-10 14:11:58.941 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI) in 48.7751ms
+2026-04-10 14:11:58.945 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI)'
+2026-04-10 14:11:58.948 +05:30 [INF] ["2026-04-10T08:41:58.9483392Z"] Response: 200
+2026-04-10 14:11:58.951 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5199/api/auth/login - 200 null application/json; charset=utf-8 83.1662ms
+2026-04-10 14:12:00.510 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/admin/statistics - null null
+2026-04-10 14:12:00.554 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/admin/logs - null null
+2026-04-10 14:12:00.513 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/admin/doctors - null null
+2026-04-10 14:12:00.536 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/admin/patients - null null
+2026-04-10 14:12:00.554 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/all - null null
+2026-04-10 14:12:00.572 +05:30 [INF] ["2026-04-10T08:42:00.5727779Z"] OPTIONS /api/admin/statistics from ::1
+2026-04-10 14:12:00.580 +05:30 [INF] ["2026-04-10T08:42:00.5803749Z"] OPTIONS /api/admin/logs from ::1
+2026-04-10 14:12:00.586 +05:30 [INF] ["2026-04-10T08:42:00.5867888Z"] OPTIONS /api/admin/doctors from ::1
+2026-04-10 14:12:00.594 +05:30 [INF] ["2026-04-10T08:42:00.5941778Z"] OPTIONS /api/admin/patients from ::1
+2026-04-10 14:12:00.601 +05:30 [INF] ["2026-04-10T08:42:00.6010914Z"] OPTIONS /api/appointment/all from ::1
+2026-04-10 14:12:00.606 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.611 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.615 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.619 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.624 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.627 +05:30 [INF] ["2026-04-10T08:42:00.6270451Z"] Response: 204
+2026-04-10 14:12:00.629 +05:30 [INF] ["2026-04-10T08:42:00.6290860Z"] Response: 204
+2026-04-10 14:12:00.631 +05:30 [INF] ["2026-04-10T08:42:00.6316043Z"] Response: 204
+2026-04-10 14:12:00.633 +05:30 [INF] ["2026-04-10T08:42:00.6337945Z"] Response: 204
+2026-04-10 14:12:00.635 +05:30 [INF] ["2026-04-10T08:42:00.6358715Z"] Response: 204
+2026-04-10 14:12:00.639 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/admin/statistics - 204 null null 129.14ms
+2026-04-10 14:12:00.644 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/admin/logs - 204 null null 89.9488ms
+2026-04-10 14:12:00.649 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/admin/doctors - 204 null null 137.7117ms
+2026-04-10 14:12:00.658 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/admin/patients - 204 null null 122.7847ms
+2026-04-10 14:12:00.662 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/all - 204 null null 107.618ms
+2026-04-10 14:12:00.674 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/admin/statistics - null null
+2026-04-10 14:12:00.682 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/admin/logs - null null
+2026-04-10 14:12:00.690 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/admin/doctors - null null
+2026-04-10 14:12:00.698 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/admin/patients - null null
+2026-04-10 14:12:00.706 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/all - null null
+2026-04-10 14:12:00.712 +05:30 [INF] ["2026-04-10T08:42:00.7120103Z"] GET /api/admin/statistics from ::1
+2026-04-10 14:12:00.718 +05:30 [INF] ["2026-04-10T08:42:00.7184572Z"] GET /api/admin/logs from ::1
+2026-04-10 14:12:00.724 +05:30 [INF] ["2026-04-10T08:42:00.7242569Z"] GET /api/admin/doctors from ::1
+2026-04-10 14:12:00.730 +05:30 [INF] ["2026-04-10T08:42:00.7301282Z"] GET /api/admin/patients from ::1
+2026-04-10 14:12:00.736 +05:30 [INF] ["2026-04-10T08:42:00.7366147Z"] GET /api/appointment/all from ::1
+2026-04-10 14:12:00.740 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.744 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.748 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.753 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.757 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:00.759 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetStatistics (DoctorAppointmentAPI)'
+2026-04-10 14:12:00.761 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetLogs (DoctorAppointmentAPI)'
+2026-04-10 14:12:00.764 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetAllDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:12:00.766 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetAllPatients (DoctorAppointmentAPI)'
+2026-04-10 14:12:00.768 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.AllAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:12:00.776 +05:30 [INF] Route matched with {action = "GetStatistics", controller = "Admin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatistics() on controller DoctorAppointmentAPI.Controllers.AdminController (DoctorAppointmentAPI).
+2026-04-10 14:12:00.779 +05:30 [INF] Route matched with {action = "GetLogs", controller = "Admin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetLogs(Int32, Int32) on controller DoctorAppointmentAPI.Controllers.AdminController (DoctorAppointmentAPI).
+2026-04-10 14:12:00.781 +05:30 [INF] Route matched with {action = "GetAllDoctors", controller = "Admin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllDoctors() on controller DoctorAppointmentAPI.Controllers.AdminController (DoctorAppointmentAPI).
+2026-04-10 14:12:00.784 +05:30 [INF] Route matched with {action = "GetAllPatients", controller = "Admin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPatients() on controller DoctorAppointmentAPI.Controllers.AdminController (DoctorAppointmentAPI).
+2026-04-10 14:12:00.787 +05:30 [INF] Route matched with {action = "AllAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AllAppointments() on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:12:00.831 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Doctors` AS `d`
+2026-04-10 14:12:01.021 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Name`, `d`.`Phone`, `d`.`Mode`, `s`.`Name` AS `Specialization`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `u`.`Email`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+INNER JOIN `Users` AS `u` ON `d`.`UserId` = `u`.`Id`
+2026-04-10 14:12:01.030 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType3`9[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:12:01.040 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AdminController.GetAllDoctors (DoctorAppointmentAPI) in 242.4342ms
+2026-04-10 14:12:01.044 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Doctors` AS `d` ON `a`.`DoctorId` = `d`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+2026-04-10 14:12:01.046 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetAllDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:12:01.055 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:12:01.055 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Patients` AS `p`
+2026-04-10 14:12:01.055 +05:30 [INF] ["2026-04-10T08:42:01.0554073Z"] Response: 200
+2026-04-10 14:12:01.058 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Name`, `p`.`Phone`, `p`.`Address`, `u`.`Email`, `u`.`LastLogin`, `p`.`CreatedAt`
+FROM `Patients` AS `p`
+INNER JOIN `Users` AS `u` ON `p`.`UserId` = `u`.`Id`
+2026-04-10 14:12:01.060 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.AllAppointments (DoctorAppointmentAPI) in 252.8211ms
+2026-04-10 14:12:01.068 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/admin/doctors - 200 null application/json; charset=utf-8 378.0453ms
+2026-04-10 14:12:01.073 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+2026-04-10 14:12:01.077 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType4`7[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:12:01.079 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.AllAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:12:01.098 +05:30 [INF] Executed DbCommand (45ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`Action`, `a`.`CreatedAt`, `a`.`Description`, `a`.`Entity`, `a`.`EntityId`, `a`.`IpAddress`, `a`.`UserId`
+FROM `AppLogs` AS `a`
+ORDER BY `a`.`CreatedAt` DESC
+LIMIT @__p_1 OFFSET @__p_0
+2026-04-10 14:12:01.099 +05:30 [INF] ["2026-04-10T08:42:01.0997061Z"] Response: 200
+2026-04-10 14:12:01.101 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+WHERE `a`.`Status` = 'Pending'
+2026-04-10 14:12:01.107 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.Models.AppLog, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:12:01.110 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/all - 200 null application/json; charset=utf-8 404.119ms
+2026-04-10 14:12:01.113 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AdminController.GetAllPatients (DoctorAppointmentAPI) in 310.8083ms
+2026-04-10 14:12:01.122 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+WHERE `a`.`Status` = 'Completed'
+2026-04-10 14:12:01.128 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AdminController.GetLogs (DoctorAppointmentAPI) in 336.4441ms
+2026-04-10 14:12:01.133 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetAllPatients (DoctorAppointmentAPI)'
+2026-04-10 14:12:01.143 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetLogs (DoctorAppointmentAPI)'
+2026-04-10 14:12:01.145 +05:30 [INF] ["2026-04-10T08:42:01.1459874Z"] Response: 200
+2026-04-10 14:12:01.146 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+WHERE `a`.`Status` = 'Cancelled'
+2026-04-10 14:12:01.148 +05:30 [INF] ["2026-04-10T08:42:01.1485297Z"] Response: 200
+2026-04-10 14:12:01.152 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/admin/patients - 200 null application/json; charset=utf-8 453.8424ms
+2026-04-10 14:12:01.160 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/admin/logs - 200 null application/json; charset=utf-8 478.2861ms
+2026-04-10 14:12:01.211 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Name` AS `Specialization`, COUNT(*) AS `Count`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+GROUP BY `s`.`Name`
+2026-04-10 14:12:01.230 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Mode`, COUNT(*) AS `Count`
+FROM `Appointments` AS `a`
+GROUP BY `a`.`Mode`
+2026-04-10 14:12:01.238 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`8[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-10 14:12:01.254 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AdminController.GetStatistics (DoctorAppointmentAPI) in 466.3359ms
+2026-04-10 14:12:01.257 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetStatistics (DoctorAppointmentAPI)'
+2026-04-10 14:12:01.261 +05:30 [INF] ["2026-04-10T08:42:01.2616512Z"] Response: 200
+2026-04-10 14:12:01.265 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/admin/statistics - 200 null application/json; charset=utf-8 591.1334ms
+2026-04-10 14:12:05.137 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/admin/doctors - null null
+2026-04-10 14:12:05.147 +05:30 [INF] ["2026-04-10T08:42:05.1470761Z"] GET /api/admin/doctors from ::1
+2026-04-10 14:12:05.153 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:05.156 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetAllDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:12:05.159 +05:30 [INF] Route matched with {action = "GetAllDoctors", controller = "Admin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllDoctors() on controller DoctorAppointmentAPI.Controllers.AdminController (DoctorAppointmentAPI).
+2026-04-10 14:12:05.196 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `d`.`Id`, `d`.`Name`, `d`.`Phone`, `d`.`Mode`, `s`.`Name` AS `Specialization`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `u`.`Email`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+INNER JOIN `Users` AS `u` ON `d`.`UserId` = `u`.`Id`
+2026-04-10 14:12:05.205 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType3`9[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:12:05.209 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AdminController.GetAllDoctors (DoctorAppointmentAPI) in 43.3062ms
+2026-04-10 14:12:05.214 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetAllDoctors (DoctorAppointmentAPI)'
+2026-04-10 14:12:05.217 +05:30 [INF] ["2026-04-10T08:42:05.2178317Z"] Response: 200
+2026-04-10 14:12:05.221 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/admin/doctors - 200 null application/json; charset=utf-8 83.8153ms
+2026-04-10 14:12:07.747 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/admin/patients - null null
+2026-04-10 14:12:07.758 +05:30 [INF] ["2026-04-10T08:42:07.7581418Z"] OPTIONS /api/admin/patients from ::1
+2026-04-10 14:12:07.764 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:07.767 +05:30 [INF] ["2026-04-10T08:42:07.7679429Z"] Response: 204
+2026-04-10 14:12:07.775 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/admin/patients - 204 null null 27.2251ms
+2026-04-10 14:12:07.786 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/admin/patients - null null
+2026-04-10 14:12:07.793 +05:30 [INF] ["2026-04-10T08:42:07.7931207Z"] GET /api/admin/patients from ::1
+2026-04-10 14:12:07.797 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:07.799 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetAllPatients (DoctorAppointmentAPI)'
+2026-04-10 14:12:07.803 +05:30 [INF] Route matched with {action = "GetAllPatients", controller = "Admin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPatients() on controller DoctorAppointmentAPI.Controllers.AdminController (DoctorAppointmentAPI).
+2026-04-10 14:12:07.829 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Name`, `p`.`Phone`, `p`.`Address`, `u`.`Email`, `u`.`LastLogin`, `p`.`CreatedAt`
+FROM `Patients` AS `p`
+INNER JOIN `Users` AS `u` ON `p`.`UserId` = `u`.`Id`
+2026-04-10 14:12:07.836 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType4`7[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:12:07.841 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AdminController.GetAllPatients (DoctorAppointmentAPI) in 32.2665ms
+2026-04-10 14:12:07.844 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetAllPatients (DoctorAppointmentAPI)'
+2026-04-10 14:12:07.848 +05:30 [INF] ["2026-04-10T08:42:07.8480435Z"] Response: 200
+2026-04-10 14:12:07.851 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/admin/patients - 200 null application/json; charset=utf-8 64.9505ms
+2026-04-10 14:12:19.710 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/all - null null
+2026-04-10 14:12:19.718 +05:30 [INF] ["2026-04-10T08:42:19.7184577Z"] OPTIONS /api/appointment/all from ::1
+2026-04-10 14:12:19.723 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:19.726 +05:30 [INF] ["2026-04-10T08:42:19.7264934Z"] Response: 204
+2026-04-10 14:12:19.730 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/all - 204 null null 20.3058ms
+2026-04-10 14:12:19.739 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/all - null null
+2026-04-10 14:12:19.746 +05:30 [INF] ["2026-04-10T08:42:19.7462365Z"] GET /api/appointment/all from ::1
+2026-04-10 14:12:19.751 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:19.754 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.AllAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:12:19.758 +05:30 [INF] Route matched with {action = "AllAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AllAppointments() on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:12:19.787 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`, `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Patients` AS `p` ON `a`.`PatientId` = `p`.`Id`
+INNER JOIN `Doctors` AS `d` ON `a`.`DoctorId` = `d`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+2026-04-10 14:12:19.795 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:12:19.799 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.AllAppointments (DoctorAppointmentAPI) in 35.7886ms
+2026-04-10 14:12:19.802 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.AllAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:12:19.806 +05:30 [INF] ["2026-04-10T08:42:19.8066953Z"] Response: 200
+2026-04-10 14:12:19.809 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/all - 200 null application/json; charset=utf-8 70.7128ms
+2026-04-10 14:12:25.411 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/admin/statistics - null null
+2026-04-10 14:12:25.419 +05:30 [INF] ["2026-04-10T08:42:25.4194828Z"] OPTIONS /api/admin/statistics from ::1
+2026-04-10 14:12:25.425 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:25.427 +05:30 [INF] ["2026-04-10T08:42:25.4278839Z"] Response: 204
+2026-04-10 14:12:25.431 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/admin/statistics - 204 null null 20.2371ms
+2026-04-10 14:12:25.441 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/admin/statistics - null null
+2026-04-10 14:12:25.447 +05:30 [INF] ["2026-04-10T08:42:25.4476698Z"] GET /api/admin/statistics from ::1
+2026-04-10 14:12:25.451 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:25.455 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetStatistics (DoctorAppointmentAPI)'
+2026-04-10 14:12:25.459 +05:30 [INF] Route matched with {action = "GetStatistics", controller = "Admin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatistics() on controller DoctorAppointmentAPI.Controllers.AdminController (DoctorAppointmentAPI).
+2026-04-10 14:12:25.484 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Doctors` AS `d`
+2026-04-10 14:12:25.492 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Patients` AS `p`
+2026-04-10 14:12:25.499 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+2026-04-10 14:12:25.506 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+WHERE `a`.`Status` = 'Pending'
+2026-04-10 14:12:25.512 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+WHERE `a`.`Status` = 'Completed'
+2026-04-10 14:12:25.520 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM `Appointments` AS `a`
+WHERE `a`.`Status` = 'Cancelled'
+2026-04-10 14:12:25.526 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `s`.`Name` AS `Specialization`, COUNT(*) AS `Count`
+FROM `Doctors` AS `d`
+INNER JOIN `Specializations` AS `s` ON `d`.`SpecializationId` = `s`.`Id`
+GROUP BY `s`.`Name`
+2026-04-10 14:12:25.534 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Mode`, COUNT(*) AS `Count`
+FROM `Appointments` AS `a`
+GROUP BY `a`.`Mode`
+2026-04-10 14:12:25.539 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`8[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-10 14:12:25.543 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AdminController.GetStatistics (DoctorAppointmentAPI) in 77.4567ms
+2026-04-10 14:12:25.546 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AdminController.GetStatistics (DoctorAppointmentAPI)'
+2026-04-10 14:12:25.550 +05:30 [INF] ["2026-04-10T08:42:25.5503483Z"] Response: 200
+2026-04-10 14:12:25.552 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/admin/statistics - 200 null application/json; charset=utf-8 111.5416ms
+2026-04-10 14:12:30.214 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/admin/daily-summary?date=2026-04-10 - null null
+2026-04-10 14:12:30.224 +05:30 [INF] ["2026-04-10T08:42:30.2239586Z"] OPTIONS /api/admin/daily-summary from ::1
+2026-04-10 14:12:30.228 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:30.230 +05:30 [INF] ["2026-04-10T08:42:30.2308977Z"] Response: 204
+2026-04-10 14:12:30.235 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/admin/daily-summary?date=2026-04-10 - 204 null null 20.2873ms
+2026-04-10 14:12:30.246 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/admin/daily-summary?date=2026-04-10 - null null
+2026-04-10 14:12:30.253 +05:30 [INF] ["2026-04-10T08:42:30.2535399Z"] GET /api/admin/daily-summary from ::1
+2026-04-10 14:12:30.258 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:30.262 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AdminController.DailySummary (DoctorAppointmentAPI)'
+2026-04-10 14:12:30.272 +05:30 [INF] Route matched with {action = "DailySummary", controller = "Admin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DailySummary(System.DateTime) on controller DoctorAppointmentAPI.Controllers.AdminController (DoctorAppointmentAPI).
+2026-04-10 14:12:30.343 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__date_Date_0='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE CONVERT(`a`.`AppointmentDate`, date) = @__date_Date_0
+2026-04-10 14:12:30.358 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType8`3[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType7`5[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-10 14:12:30.370 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AdminController.DailySummary (DoctorAppointmentAPI) in 92.8604ms
+2026-04-10 14:12:30.374 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AdminController.DailySummary (DoctorAppointmentAPI)'
+2026-04-10 14:12:30.378 +05:30 [INF] ["2026-04-10T08:42:30.3780811Z"] Response: 200
+2026-04-10 14:12:30.382 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/admin/daily-summary?date=2026-04-10 - 200 null application/json; charset=utf-8 136.1051ms
+2026-04-10 14:12:40.154 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/auth/login - null null
+2026-04-10 14:12:40.162 +05:30 [INF] ["2026-04-10T08:42:40.1623220Z"] OPTIONS /api/auth/login from ::1
+2026-04-10 14:12:40.168 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:40.170 +05:30 [INF] ["2026-04-10T08:42:40.1705116Z"] Response: 204
+2026-04-10 14:12:40.177 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/auth/login - 204 null null 23.3999ms
+2026-04-10 14:12:40.189 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5199/api/auth/login - application/json 59
+2026-04-10 14:12:40.196 +05:30 [INF] ["2026-04-10T08:42:40.1968626Z"] POST /api/auth/login from ::1
+2026-04-10 14:12:40.201 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:40.203 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI)'
+2026-04-10 14:12:40.207 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(DoctorAppointmentAPI.DTOs.Auth.LoginDto) on controller DoctorAppointmentAPI.Controllers.AuthController (DoctorAppointmentAPI).
+2026-04-10 14:12:40.234 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?' (Size = 150), @__dto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`Id`, `u`.`CreatedAt`, `u`.`Email`, `u`.`EmailVerifyToken`, `u`.`IsActive`, `u`.`IsEmailVerified`, `u`.`LastLogin`, `u`.`Password`, `u`.`Role`
+FROM `Users` AS `u`
+WHERE (`u`.`Email` = @__dto_Email_0) AND (`u`.`Password` = @__dto_Password_1)
+LIMIT 1
+2026-04-10 14:12:40.256 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p6='?' (DbType = Int32), @p5='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `Sessions` (`IsActive`, `LoginTime`, `LogoutTime`, `Token`, `UserId`)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT `Id`
+FROM `Sessions`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+
+UPDATE `Users` SET `LastLogin` = @p5
+WHERE `Id` = @p6;
+SELECT ROW_COUNT();
+2026-04-10 14:12:40.266 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`Address`, `p`.`CreatedAt`, `p`.`Name`, `p`.`Phone`, `p`.`UserId`
+FROM `Patients` AS `p`
+WHERE `p`.`UserId` = @__user_Id_0
+LIMIT 1
+2026-04-10 14:12:40.272 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType10`5[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-10 14:12:40.275 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI) in 63.3076ms
+2026-04-10 14:12:40.279 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AuthController.Login (DoctorAppointmentAPI)'
+2026-04-10 14:12:40.282 +05:30 [INF] ["2026-04-10T08:42:40.2820739Z"] Response: 200
+2026-04-10 14:12:40.286 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5199/api/auth/login - 200 null application/json; charset=utf-8 96.2516ms
+2026-04-10 14:12:41.819 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/my/8 - null null
+2026-04-10 14:12:41.841 +05:30 [INF] ["2026-04-10T08:42:41.8412172Z"] OPTIONS /api/appointment/my/8 from ::1
+2026-04-10 14:12:41.849 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:41.851 +05:30 [INF] ["2026-04-10T08:42:41.8515798Z"] Response: 204
+2026-04-10 14:12:41.856 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5199/api/appointment/my/8 - 204 null null 36.7487ms
+2026-04-10 14:12:41.864 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/my/8 - null null
+2026-04-10 14:12:41.872 +05:30 [INF] ["2026-04-10T08:42:41.8719819Z"] GET /api/appointment/my/8 from ::1
+2026-04-10 14:12:41.878 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:41.882 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:12:41.884 +05:30 [INF] Route matched with {action = "MyAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyAppointments(Int32) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:12:41.910 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__patientId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Doctors` AS `d` ON `a`.`DoctorId` = `d`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE `a`.`PatientId` = @__patientId_0
+2026-04-10 14:12:41.916 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:12:41.920 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI) in 30.4227ms
+2026-04-10 14:12:41.923 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:12:41.925 +05:30 [INF] ["2026-04-10T08:42:41.9258063Z"] Response: 200
+2026-04-10 14:12:41.928 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/my/8 - 200 null application/json; charset=utf-8 63.9058ms
+2026-04-10 14:12:46.501 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5199/api/appointment/my/8 - null null
+2026-04-10 14:12:46.507 +05:30 [INF] ["2026-04-10T08:42:46.5069772Z"] GET /api/appointment/my/8 from ::1
+2026-04-10 14:12:46.518 +05:30 [INF] CORS policy execution successful.
+2026-04-10 14:12:46.522 +05:30 [INF] Executing endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:12:46.528 +05:30 [INF] Route matched with {action = "MyAppointments", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyAppointments(Int32) on controller DoctorAppointmentAPI.Controllers.AppointmentController (DoctorAppointmentAPI).
+2026-04-10 14:12:46.563 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__patientId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AppointmentDate`, `a`.`AppointmentTime`, `a`.`CreatedAt`, `a`.`DoctorId`, `a`.`Mode`, `a`.`Notes`, `a`.`PatientId`, `a`.`ReminderSent1Day`, `a`.`ReminderSent2Day`, `a`.`ReminderSentSameDay`, `a`.`SpecializationId`, `a`.`Status`, `a`.`UpdatedAt`, `d`.`Id`, `d`.`Address`, `d`.`CreatedAt`, `d`.`Degree`, `d`.`Experience`, `d`.`IsAvailable`, `d`.`Mode`, `d`.`Name`, `d`.`Phone`, `d`.`ProfilePhoto`, `d`.`SpecializationId`, `d`.`UserId`, `s`.`Id`, `s`.`Category`, `s`.`CreatedAt`, `s`.`Description`, `s`.`Name`
+FROM `Appointments` AS `a`
+INNER JOIN `Doctors` AS `d` ON `a`.`DoctorId` = `d`.`Id`
+INNER JOIN `Specializations` AS `s` ON `a`.`SpecializationId` = `s`.`Id`
+WHERE `a`.`PatientId` = @__patientId_0
+2026-04-10 14:12:46.571 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[DoctorAppointmentAPI.DTOs.Appointment.AppointmentResponseDto, DoctorAppointmentAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-10 14:12:46.575 +05:30 [INF] Executed action DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI) in 42.1069ms
+2026-04-10 14:12:46.579 +05:30 [INF] Executed endpoint 'DoctorAppointmentAPI.Controllers.AppointmentController.MyAppointments (DoctorAppointmentAPI)'
+2026-04-10 14:12:46.582 +05:30 [INF] ["2026-04-10T08:42:46.5822223Z"] Response: 200
+2026-04-10 14:12:46.586 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5199/api/appointment/my/8 - 200 null application/json; charset=utf-8 84.9472ms
